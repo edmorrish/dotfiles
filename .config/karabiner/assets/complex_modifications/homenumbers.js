@@ -48,7 +48,7 @@ const keymap = (from, to) => ([{
     key_code: from,
     modifiers: {
       mandatory: [],
-      optional: [ 'left_shift' ]
+      optional: [ 'left_shift', 'right_shift' ]
     }
   },
   to: [
@@ -67,7 +67,7 @@ const keymap = (from, to) => ([{
     key_code: from,
     modifiers: {
       mandatory: [],
-      optional: [ 'left_shift' ]
+      optional: [ 'left_shift', 'right_shift' ]
     }
   },
   to: [
@@ -95,6 +95,7 @@ const full = {
         spacebar,
         ...keys,
         ...keymap("quote", "hyphen"),
+        ...keymap("t", "tab")
       ]
     }
   ]

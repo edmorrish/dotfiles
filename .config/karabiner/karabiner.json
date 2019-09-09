@@ -159,7 +159,8 @@
                                     "modifiers": {
                                         "mandatory": [],
                                         "optional": [
-                                            "left_shift"
+                                            "left_shift",
+                                            "right_shift"
                                         ]
                                     }
                                 },
@@ -183,7 +184,8 @@
                                     "modifiers": {
                                         "mandatory": [],
                                         "optional": [
-                                            "left_shift"
+                                            "left_shift",
+                                            "right_shift"
                                         ]
                                     }
                                 },
@@ -221,7 +223,8 @@
                                     "modifiers": {
                                         "mandatory": [],
                                         "optional": [
-                                            "left_shift"
+                                            "left_shift",
+                                            "right_shift"
                                         ]
                                     }
                                 },
@@ -245,7 +248,8 @@
                                     "modifiers": {
                                         "mandatory": [],
                                         "optional": [
-                                            "left_shift"
+                                            "left_shift",
+                                            "right_shift"
                                         ]
                                     }
                                 },
@@ -283,7 +287,8 @@
                                     "modifiers": {
                                         "mandatory": [],
                                         "optional": [
-                                            "left_shift"
+                                            "left_shift",
+                                            "right_shift"
                                         ]
                                     }
                                 },
@@ -307,7 +312,8 @@
                                     "modifiers": {
                                         "mandatory": [],
                                         "optional": [
-                                            "left_shift"
+                                            "left_shift",
+                                            "right_shift"
                                         ]
                                     }
                                 },
@@ -345,7 +351,8 @@
                                     "modifiers": {
                                         "mandatory": [],
                                         "optional": [
-                                            "left_shift"
+                                            "left_shift",
+                                            "right_shift"
                                         ]
                                     }
                                 },
@@ -369,7 +376,8 @@
                                     "modifiers": {
                                         "mandatory": [],
                                         "optional": [
-                                            "left_shift"
+                                            "left_shift",
+                                            "right_shift"
                                         ]
                                     }
                                 },
@@ -407,7 +415,8 @@
                                     "modifiers": {
                                         "mandatory": [],
                                         "optional": [
-                                            "left_shift"
+                                            "left_shift",
+                                            "right_shift"
                                         ]
                                     }
                                 },
@@ -431,7 +440,8 @@
                                     "modifiers": {
                                         "mandatory": [],
                                         "optional": [
-                                            "left_shift"
+                                            "left_shift",
+                                            "right_shift"
                                         ]
                                     }
                                 },
@@ -469,7 +479,8 @@
                                     "modifiers": {
                                         "mandatory": [],
                                         "optional": [
-                                            "left_shift"
+                                            "left_shift",
+                                            "right_shift"
                                         ]
                                     }
                                 },
@@ -493,7 +504,8 @@
                                     "modifiers": {
                                         "mandatory": [],
                                         "optional": [
-                                            "left_shift"
+                                            "left_shift",
+                                            "right_shift"
                                         ]
                                     }
                                 },
@@ -531,7 +543,8 @@
                                     "modifiers": {
                                         "mandatory": [],
                                         "optional": [
-                                            "left_shift"
+                                            "left_shift",
+                                            "right_shift"
                                         ]
                                     }
                                 },
@@ -555,7 +568,8 @@
                                     "modifiers": {
                                         "mandatory": [],
                                         "optional": [
-                                            "left_shift"
+                                            "left_shift",
+                                            "right_shift"
                                         ]
                                     }
                                 },
@@ -593,7 +607,8 @@
                                     "modifiers": {
                                         "mandatory": [],
                                         "optional": [
-                                            "left_shift"
+                                            "left_shift",
+                                            "right_shift"
                                         ]
                                     }
                                 },
@@ -617,7 +632,8 @@
                                     "modifiers": {
                                         "mandatory": [],
                                         "optional": [
-                                            "left_shift"
+                                            "left_shift",
+                                            "right_shift"
                                         ]
                                     }
                                 },
@@ -655,7 +671,8 @@
                                     "modifiers": {
                                         "mandatory": [],
                                         "optional": [
-                                            "left_shift"
+                                            "left_shift",
+                                            "right_shift"
                                         ]
                                     }
                                 },
@@ -679,7 +696,8 @@
                                     "modifiers": {
                                         "mandatory": [],
                                         "optional": [
-                                            "left_shift"
+                                            "left_shift",
+                                            "right_shift"
                                         ]
                                     }
                                 },
@@ -717,7 +735,8 @@
                                     "modifiers": {
                                         "mandatory": [],
                                         "optional": [
-                                            "left_shift"
+                                            "left_shift",
+                                            "right_shift"
                                         ]
                                     }
                                 },
@@ -741,7 +760,8 @@
                                     "modifiers": {
                                         "mandatory": [],
                                         "optional": [
-                                            "left_shift"
+                                            "left_shift",
+                                            "right_shift"
                                         ]
                                     }
                                 },
@@ -779,7 +799,8 @@
                                     "modifiers": {
                                         "mandatory": [],
                                         "optional": [
-                                            "left_shift"
+                                            "left_shift",
+                                            "right_shift"
                                         ]
                                     }
                                 },
@@ -803,7 +824,8 @@
                                     "modifiers": {
                                         "mandatory": [],
                                         "optional": [
-                                            "left_shift"
+                                            "left_shift",
+                                            "right_shift"
                                         ]
                                     }
                                 },
@@ -813,6 +835,70 @@
                                     },
                                     {
                                         "key_code": "hyphen"
+                                    },
+                                    {
+                                        "set_variable": {
+                                            "name": "cleared_space",
+                                            "value": 1
+                                        }
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "spacebar_modifier",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    },
+                                    {
+                                        "name": "cleared_space",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "t",
+                                    "modifiers": {
+                                        "mandatory": [],
+                                        "optional": [
+                                            "left_shift",
+                                            "right_shift"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "tab"
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "spacebar_modifier",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "t",
+                                    "modifiers": {
+                                        "mandatory": [],
+                                        "optional": [
+                                            "left_shift",
+                                            "right_shift"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "delete_or_backspace"
+                                    },
+                                    {
+                                        "key_code": "tab"
                                     },
                                     {
                                         "set_variable": {
