@@ -13,7 +13,7 @@ set showmatch
 set foldenable
 set foldlevelstart=10
 set foldnestmax=10
-set foldcolumn=1
+set foldcolumn=0
 set foldmethod=syntax
 let javaScript_fold=1
 set spelllang=en_gb
@@ -154,4 +154,4 @@ let g:lightline = {
       \ }
       \ }
 
-let g:hardtime_default_on = 1
+let g:hardtime_default_on = 0

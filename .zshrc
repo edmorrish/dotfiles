@@ -32,7 +32,7 @@ if ! zgen saved; then
 	zgen load zsh-users/zsh-syntax-highlighting
 	zgen load zsh-users/zsh-completions
 	zgen load felixgravila/zsh-abbr-path
-
+  zgen load lukechilds/zsh-better-npm-completion
 
 	zgen save
 fi
