@@ -23,7 +23,9 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'sjl/badwolf'
 Plug 'tpope/vim-surround'
+Plug 'tpope/vim-unimpaired'
 Plug 'ctrlpvim/ctrlp.vim'
+Plug 'Yggdroot/indentLine'
 
 Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
@@ -31,6 +33,7 @@ Plug 'dense-analysis/ale'
 Plug ''.expand('~/workdir/repos/vim-svelte/')
 Plug 'JulesWang/css.vim'
 Plug 'leafgarland/typescript-vim'
+Plug 'peitalin/vim-jsx-typescript'
 Plug 'itchyny/lightline.vim'
 Plug 'maximbaz/lightline-ale'
 Plug 'derekwyatt/vim-scala'
@@ -45,9 +48,18 @@ Plug 'autozimu/LanguageClient-neovim', {
     \ 'branch': 'next',
     \ 'do': 'bash install.sh',
     \ }
+Plug 'chrisbra/Colorizer'
+Plug 'haya14busa/incsearch.vim'
+Plug 'easymotion/vim-easymotion'
+Plug 'jparise/vim-graphql'
+Plug 'dleonard0/pony-vim-syntax'
+Plug 'jakwings/vim-pony'
+Plug 'psliwka/vim-smoothie'
+
 
 if has('nvim')
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+  Plug 'Shougo/vimproc.vim', { 'do': 'make' }
 else
   Plug 'Shougo/deoplete.nvim'
   Plug 'roxma/nvim-yarp'
@@ -56,6 +68,9 @@ endif
 
 Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
 Plug 'ternjs/tern_for_vim'
+
+Plug 'Shougo/neosnippet.vim'
+Plug 'Shougo/neosnippet-snippets'
 call plug#end()
 
 function! SourceIfExists(file)
@@ -73,6 +88,28 @@ let g:deoplete#sources#ternjs#types = 1
 let g:deoplete#sources#ternjs#docs = 1
 let g:deoplete#sources#ternjs#case_insensitive = 1
 set completeopt-=preview
+
+" neosnippet
+" " Plugin key-mappings.
+" Note: It must be "imap" and "smap".  It uses <Plug> mappings.
+imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+xmap <C-k>     <Plug>(neosnippet_expand_target)
+
+" SuperTab like snippets behavior.
+" Note: It must be "imap" and "smap".  It uses <Plug> mappings.
+"imap <expr><TAB>
+" \ pumvisible() ? "\<C-n>" :
+" \ neosnippet#expandable_or_jumpable() ?
+" \    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+\ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+
+" For conceal markers.
+if has('conceal')
+  set conceallevel=2 concealcursor=niv
+endif
+
 
 " tern
 let g:tern#command = [$HOME . '/workdir/repos/tern/bin/tern']
@@ -97,7 +134,7 @@ nnoremap <F5> :call LanguageClient_contextMenu()<CR>
 nnoremap <leader>ft :set spell!<cr>
 nnoremap <leader>ff 1z=
 " space open/closes folds
-"nnoremap <space> za
+nnoremap <space> za
 
 "crtlp
 let g:ctrlp_match_window = 'bottom,order:ttb'
@@ -154,4 +191,22 @@ let g:lightline = {
       \ }
       \ }
 
+" undodir
+set undofile
+set undodir=~/.vim/undodir
+
 let g:hardtime_default_on = 0
+
+let g:colorizer_auto_filetype='css,html,scss'
+
+" incsearch
+map /  <Plug>(incsearch-forward)
+map ?  <Plug>(incsearch-backward)
+map g/ <Plug>(incsearch-stay)
+
+" easymotion
+let g:EasyMotion_do_mapping = 0 " Disable default mappings
+nmap s <Plug>(easymotion-overwin-f2)
+let g:EasyMotion_smartcase = 1
+
+

@@ -14,7 +14,7 @@ compinit
 
 source "${HOME}/.zgen/zgen.zsh"
 
-export PATH="/usr/local/bin/vim:$PATH"
+export PATH="/Users/morrie39/.local/bin:/usr/local/bin/vim:$PATH"
 
 if ! zgen saved; then
 	zgen oh-my-zsh
@@ -83,3 +83,6 @@ alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 
 # Local configs
 [ -f ~/.zshrc.local ] && source ~/.zshrc.local
+
+eval $(opam env)
+
