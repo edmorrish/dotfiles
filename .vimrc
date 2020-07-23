@@ -24,7 +24,8 @@ call plug#begin('~/.vim/plugged')
 Plug 'sjl/badwolf'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
-Plug 'ctrlpvim/ctrlp.vim'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 Plug 'Yggdroot/indentLine'
 
 Plug 'pangloss/vim-javascript'
@@ -136,13 +137,7 @@ nnoremap <leader>ff 1z=
 " space open/closes folds
 nnoremap <space> za
 
-"crtlp
-let g:ctrlp_match_window = 'bottom,order:ttb'
-let g:ctrlp_switch_buffer = 1
-let g:ctrlp_working_path_mode = 0
-let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
-let g:ctrlp_map='<c-=>'
-nnoremap <leader>p :CtrlP<cr>
+nnoremap <leader>d :<C-u>FZF<cr>
 
 " ALE
 let g:ale_fixers = {
@@ -164,6 +159,10 @@ autocmd FileType typescript nmap <buffer> <Leader>th : <C-u>echo tsuquyomi#hint(
 " Gruvbox
 colorscheme gruvbox
 let g:gruvbox_contrast_dark='hard'
+
+" Italics
+highlight Comment cterm=italic
+
 
 " Lightline
 set laststatus=2
