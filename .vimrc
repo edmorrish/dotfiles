@@ -55,7 +55,8 @@ Plug 'easymotion/vim-easymotion'
 Plug 'jparise/vim-graphql'
 Plug 'dleonard0/pony-vim-syntax'
 Plug 'jakwings/vim-pony'
-Plug 'psliwka/vim-smoothie'
+Plug 'frazrepo/vim-rainbow'
+"Plug 'psliwka/vim-smoothie'
 
 
 if has('nvim')
@@ -146,9 +147,19 @@ let g:ale_fixers = {
 \   ],
 \   'typescript': [
 \       'eslint',
+\       'prettier',
 \   ],
 \}
 autocmd FileType typescript let g:ale_javascript_eslint_options = '--ext ts,tsx,js,jsx'
+let g:ale_linters = {
+\   'javascript': [
+\       'eslint',
+\   ],
+\   'typescript': [
+\       'eslint',
+\       'prettier',
+\   ],
+\}
   
 let g:ale_fix_on_save = 1
 
@@ -208,4 +219,17 @@ let g:EasyMotion_do_mapping = 0 " Disable default mappings
 nmap s <Plug>(easymotion-overwin-f2)
 let g:EasyMotion_smartcase = 1
 
+" Remember last spot
+autocmd BufReadPost *
+     \ if line("'\"") > 0 && line("'\"") <= line("$") |
+     \   exe "normal! g`\"" |
+     \ endif
 
+let g:rainbow_active = 1
+
+let g:rainbow_load_separately = [
+    \ [ '*' , [['(', ')'], ['\[', '\]'], ['{', '}']] ],
+    \ [ '*.tex' , [['(', ')'], ['\[', '\]']] ],
+    \ [ '*.cpp' , [['(', ')'], ['\[', '\]'], ['{', '}']] ],
+    \ [ '*.{html,htm}' , [['(', ')'], ['\[', '\]'], ['{', '}'], ['<\a[^>]*>', '</[^>]*>']] ],
+    \ ]
