@@ -14,7 +14,7 @@ set foldenable
 set foldlevelstart=10
 set foldnestmax=10
 set foldcolumn=0
-set foldmethod=syntax
+set foldmethod=indent
 let javaScript_fold=1
 set spelllang=en_gb
 set rnu
@@ -53,11 +53,9 @@ Plug 'chrisbra/Colorizer'
 Plug 'haya14busa/incsearch.vim'
 Plug 'easymotion/vim-easymotion'
 Plug 'jparise/vim-graphql'
-Plug 'dleonard0/pony-vim-syntax'
 Plug 'jakwings/vim-pony'
 Plug 'frazrepo/vim-rainbow'
 "Plug 'psliwka/vim-smoothie'
-
 
 if has('nvim')
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -82,7 +80,7 @@ function! SourceIfExists(file)
 endfunction
 
 " deoplete
-let g:deoplete#enable_at_startup = 1
+let g:deoplete#enable_at_startup = 0
 inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 let g:deoplete#sources#ternjs#tern_bin = $HOME . '/workdir/repos/tern/bin/tern'
 call deoplete#custom#source('tern', 'rank', 1000)
@@ -138,7 +136,8 @@ nnoremap <leader>ff 1z=
 " space open/closes folds
 nnoremap <space> za
 
-nnoremap <leader>d :<C-u>FZF<cr>
+nnoremap <leader>f :<C-u>FZF<cr>
+nnoremap <leader>d :<C-u>GFiles<cr>
 
 " ALE
 let g:ale_fixers = {
@@ -147,7 +146,6 @@ let g:ale_fixers = {
 \   ],
 \   'typescript': [
 \       'eslint',
-\       'prettier',
 \   ],
 \}
 autocmd FileType typescript let g:ale_javascript_eslint_options = '--ext ts,tsx,js,jsx'
