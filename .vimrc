@@ -21,7 +21,6 @@ set rnu
 
 call plug#begin('~/.vim/plugged')
 
-Plug 'sjl/badwolf'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -30,47 +29,41 @@ Plug 'Yggdroot/indentLine'
 
 Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
-Plug 'dense-analysis/ale'
-Plug ''.expand('~/workdir/repos/vim-svelte/')
+" Plug 'dense-analysis/ale'
 Plug 'JulesWang/css.vim'
 Plug 'leafgarland/typescript-vim'
 Plug 'peitalin/vim-jsx-typescript'
 Plug 'itchyny/lightline.vim'
 Plug 'maximbaz/lightline-ale'
-Plug 'derekwyatt/vim-scala'
 Plug 'tpope/vim-fugitive'
-Plug 'Quramy/tsuquyomi'
+" Plug 'Quramy/tsuquyomi'
 Plug 'morhetz/gruvbox'
-Plug 'dracula/vim',{'as':'dracula'}
 Plug 'takac/vim-hardtime'
 Plug 'tpope/vim-repeat'
-Plug 'reasonml-editor/vim-reason-plus'
-Plug 'autozimu/LanguageClient-neovim', {
-    \ 'branch': 'next',
-    \ 'do': 'bash install.sh',
-    \ }
-Plug 'chrisbra/Colorizer'
-Plug 'haya14busa/incsearch.vim'
+"Plug 'autozimu/LanguageClient-neovim', {
+"    \ 'branch': 'next',
+"    \ 'do': 'bash install.sh',
+"    \ }
 Plug 'easymotion/vim-easymotion'
-Plug 'jparise/vim-graphql'
-Plug 'jakwings/vim-pony'
 Plug 'frazrepo/vim-rainbow'
+Plug 'haya14busa/incsearch.vim'
 "Plug 'psliwka/vim-smoothie'
 
 if has('nvim')
-  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-  Plug 'Shougo/vimproc.vim', { 'do': 'make' }
+"  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+"  Plug 'Shougo/vimproc.vim', { 'do': 'make' }
 else
   Plug 'Shougo/deoplete.nvim'
   Plug 'roxma/nvim-yarp'
   Plug 'roxma/vim-hug-neovim-rpc'
 endif
 
-Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
-Plug 'ternjs/tern_for_vim'
+" Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
+" Plug 'ternjs/tern_for_vim'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'vim-test/vim-test'
 
-Plug 'Shougo/neosnippet.vim'
-Plug 'Shougo/neosnippet-snippets'
+
 call plug#end()
 
 function! SourceIfExists(file)
@@ -79,42 +72,19 @@ function! SourceIfExists(file)
   endif
 endfunction
 
-" deoplete
-let g:deoplete#enable_at_startup = 0
-inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
-let g:deoplete#sources#ternjs#tern_bin = $HOME . '/workdir/repos/tern/bin/tern'
-call deoplete#custom#source('tern', 'rank', 1000)
-let g:deoplete#sources#ternjs#types = 1
-let g:deoplete#sources#ternjs#docs = 1
-let g:deoplete#sources#ternjs#case_insensitive = 1
-set completeopt-=preview
 
-" neosnippet
-" " Plugin key-mappings.
-" Note: It must be "imap" and "smap".  It uses <Plug> mappings.
-imap <C-k>     <Plug>(neosnippet_expand_or_jump)
-smap <C-k>     <Plug>(neosnippet_expand_or_jump)
-xmap <C-k>     <Plug>(neosnippet_expand_target)
-
-" SuperTab like snippets behavior.
-" Note: It must be "imap" and "smap".  It uses <Plug> mappings.
-"imap <expr><TAB>
-" \ pumvisible() ? "\<C-n>" :
-" \ neosnippet#expandable_or_jumpable() ?
-" \    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-\ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-
-" For conceal markers.
+" " For conceal markers.
 if has('conceal')
   set conceallevel=2 concealcursor=niv
 endif
 
+if has('nvim') 
+  tnoremap <Esc> <C-\><C-n>
+endif
 
-" tern
-let g:tern#command = [$HOME . '/workdir/repos/tern/bin/tern']
-let g:tern#arguments = ["--persistent"]
-nnoremap <leader>td :TernDef<CR>
+let g:vim_json_conceal=0
+let g:markdown_syntax_conceal=0
+
 
 let mapleader=","
 nnoremap <leader>sp :source $MYVIMRC<cr>:PlugInstall<cr>
@@ -124,11 +94,35 @@ nnoremap <leader>sz :!source ~/.zshrc && zgen reset<cr>
 nnoremap <leader>ev :vs ~/.vimrc<cr>
 nnoremap <leader>ez :vs ~/.zshrc<cr>
 
-" LanguageClient
-let g:LanguageClient_serverCommands = {
-      \ 'reason': [$HOME . '/bin/reason-language-server'],
-      \ }
-nnoremap <F5> :call LanguageClient_contextMenu()<CR>
+" Test
+let g:test#basic#start_normal = 1
+let g:test#neovim = 1
+let test#strategy = "neovim"
+
+nmap <silent> <leader>tn :TestNearest<cr>
+nmap <silent> <leader>tf :TestFile<cr>
+nmap <silent> <leader>ts :TestSuite<cr>
+ 
+" CoC
+set hidden
+set nobackup
+set nowritebackup
+set cmdheight=1
+set updatetime=300
+set shortmess+=c
+set signcolumn=number
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
+let g:coc_global_extensions = ['coc-json', 'coc-tsserver', 'coc-eslint', 'coc-prettier', 'coc-css']
+
+autocmd User CocStatusChange,CocDiagnosticChange call lightline#update()
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+nmap <silent> gb :<C-u>CocCommand tsserver.findAllFileReferences<cr>
+nmap <leader>ca <Plug>(coc-codeaction)
+nmap <leader>cn <Plug>(coc-rename)
 
 " spelling
 nnoremap <leader>ft :set spell!<cr>
@@ -180,33 +174,49 @@ let g:lightline = {
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
       \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ],
-      \   'right': [[ 'linter_checking', 'linter_errors', 'linter_warnings', 'linter_ok' ]]
+      \   'right': [[ 'cocstatus' ]]
       \ },
       \ 'component_function': {
-      \   'gitbranch': 'fugitive#head'
+      \   'gitbranch': 'FugitiveHead',
+      \   'cocstatus': 'coc#status'
       \ },
-      \ 'component_expand': {
-      \   'linter_checking': 'lightline#ale#checking',
-      \  'linter_warnings': 'lightline#ale#warnings',
-      \  'linter_errors': 'lightline#ale#errors',
-      \  'linter_ok': 'lightline#ale#ok',
-      \   },
-      \ 'component_type': {
-      \     'linter_checking': 'left',
-      \     'linter_warnings': 'warning',
-      \     'linter_errors': 'error',
-      \     'linter_ok': 'left',
       \ }
-      \ }
+
+inoremap <silent><expr> <TAB>
+      \ coc#pum#visible() ? coc#pum#next(1):
+      \ CheckBackspace() ? "\<Tab>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
+
+" Make <CR> to accept selected completion item or notify coc.nvim to format
+" <C-g>u breaks current undo, please make your own choice.
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
+                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
+function! CheckBackspace() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+autocmd CursorHold * silent call CocActionAsync('highlight')
+augroup mygroup
+  autocmd!
+  " Setup formatexpr specified filetype(s).
+  autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
+  " Update signature help on jump placeholder.
+  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+augroup end
+
+nmap <leader>td :call CocActionAsync('doHover')<cr>
+
+
 
 " undodir
 set undofile
 set undodir=~/.vim/undodir
 
 let g:hardtime_default_on = 0
-
-let g:colorizer_auto_filetype='css,html,scss'
-
+" 
 " incsearch
 map /  <Plug>(incsearch-forward)
 map ?  <Plug>(incsearch-backward)

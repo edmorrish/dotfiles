@@ -11,7 +11,6 @@ autoload -Uz compinit
 compinit
 # End of lines added by compinstall
 #
-export PATH="$PATH:/Applications/kitty.app/Contents/MacOS"
 
 source "${HOME}/.zgen/zgen.zsh"
 
@@ -60,11 +59,6 @@ alias root='cd $(git rev-parse --show-toplevel)'
 alias vip='vi $(git root)/package.json'
 alias vi='nvim'
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-#[[ -s "$HOME/.avn/bin/avn.sh" ]] && source "$HOME/.avn/bin/avn.sh" # load avn
-
 # fnm
 eval "$(fnm env --multi --use-on-cd)"
 
@@ -90,3 +84,10 @@ alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 
 eval $(opam env)
 
+
+# bun completions
+[ -s "/Users/morrie39/.bun/_bun" ] && source "/Users/morrie39/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
